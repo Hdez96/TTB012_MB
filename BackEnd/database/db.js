@@ -1,7 +1,7 @@
 const Sequelize = require("sequelize")
 const db = {}
 const sequelize = new Sequelize("mb","admin","password", {
-    host: '127.0.0.1',
+    host: 'mb.cfj64mlbq1sg.us-east-2.rds.amazonaws.com',
     dialect: 'mysql',
     operatorsAliases: false,
     port:'3306',
