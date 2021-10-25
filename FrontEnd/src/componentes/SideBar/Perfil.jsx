@@ -113,7 +113,7 @@ const Perfil = () => {
           <Typography style={{ color: '#FFFFFF' }} variant="h5">
       	   {cargo}
       	  </Typography>
-            <Button color="primary" href="/perfil">Editar Perfil</Button>
+            <Button color="#FFFFFF" href="/perfil">Editar Perfil</Button>
       </div>
      );
 }

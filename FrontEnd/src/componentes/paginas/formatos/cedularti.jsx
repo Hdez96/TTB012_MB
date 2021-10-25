@@ -29,7 +29,8 @@ import { formRegisterE } from '../../Functions/RTIEstado'
 import { formRegisterF } from '../../Functions/RTIFuncionamiento'
 import SignatureCanvas from 'react-signature-canvas'
 import KeyboardReturn from "@material-ui/icons/KeyboardReturn";   
-import CheckCircleOutline from "@material-ui/icons/CheckCircleOutline";   
+import {IoReturnUpBack} from "react-icons/io5";
+import {IoReturnUpForwardOutline} from "react-icons/io5"; 
 
 /* function Copyright() {
   return (
@@ -1673,7 +1674,7 @@ const submitValue = async() => {
                             onClick={()=> {
 			    	history.push('/Revisiones/Formatos')
 			    }}>
-                           <KeyboardReturn />
+                           <IoReturnUpBack />
                     </Button>	
 			<Button
 		            width= "25%"
@@ -1684,7 +1685,7 @@ const submitValue = async() => {
 		            className={classes.submit}
 		            
 		            onClick={submitValue}>
-		          <CheckCircleOutline />   
+		          <IoReturnUpForwardOutline />   
 		    </Button>
           </form>
 				

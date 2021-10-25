@@ -16,6 +16,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles,Select, MenuItem,  } from '@material-ui/core/';
 import Container from '@material-ui/core/Container';
 import {register} from "../Functions/UserFunctions";
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 function Copyright() {
   return (
@@ -163,7 +164,7 @@ export default function SignUp() {
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
-          <TrainIcon />
+          <AccountCircleIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
           Registro
@@ -262,6 +263,7 @@ export default function SignUp() {
           <Button
             type="submit"
             fullWidth
+            style={{backgroundColor:'#992830'}}
             variant="contained"
             color="secondary"
             className={classes.submit}

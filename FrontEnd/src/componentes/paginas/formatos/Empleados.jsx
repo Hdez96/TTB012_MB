@@ -22,11 +22,13 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import IconButton from '@material-ui/core/IconButton';
-import DeleteIcon from '@material-ui/icons/Delete';
+import CheckIcon from '@material-ui/icons/Check';
+import BlockIcon from '@material-ui/icons/Block';
 import TextField from '@material-ui/core/TextField';
 import Input from '@material-ui/core/Input';
 import { useHistory } from "react-router-dom";
 import {getData, activar_Empleado,cambiarCargo} from "../../Functions/UserFunctions"
+
 
 
 const Empleados = () => {
@@ -46,17 +48,17 @@ const Empleados = () => {
 
     const ColorButton = withStyles((theme) => ({
         root: {
-          color: theme.palette.getContrastText(green[500]),
-          backgroundColor: green[500],
+          color: '#FFFFFF',
+          backgroundColor: '#992830',
           '&:hover': {
-            backgroundColor: green[700],
+            backgroundColor: purple[700],
           },
         },
       }))(Button);
       
       const StyledTableCell = withStyles((theme) => ({
         head: {
-          backgroundColor: theme.palette.error.light,
+          backgroundColor: '#992830',
           color: theme.palette.common.white,
           size:  'small',
         
@@ -121,6 +123,13 @@ const Empleados = () => {
           setPreload(false)
         //}
       }
+
+      const UserEstado = (row) =>{
+        if(row.estado=="ACTIVO")
+          return <CheckIcon />
+        if(row.estado=="INACTIVO")
+          return <BlockIcon />
+      }
   
     return (       
      
@@ -167,12 +176,12 @@ const Empleados = () => {
                       </Select>
                     </StyledTableCell>
                     <StyledTableCell align="center">
-                    <ColorButton variant="contained" name = {row.Email} color="primary" className={classes.submit} onClick={() => {
+                    <ColorButton variant="contained" name = {row.Email} color="Primary" className={classes.submit} onClick={() => {
                         if(row.Tipo != "JUD"|| cargo == "Gerente" || cargo == "Administrador"){                                  
                         activar_Empleado(row)
                         }
                       }}>
-                    {row.estado}
+                    {UserEstado(row)}
                     </ColorButton></StyledTableCell>                 
                   </StyledTableRow>
                 ))}

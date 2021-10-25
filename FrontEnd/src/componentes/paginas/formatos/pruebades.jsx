@@ -30,7 +30,9 @@ import { sendDataLF } from '../../Functions/EstadoDeLlantasFinal'
 import { sendDataF } from '../../Functions/DatosFinales'
 import { sendDataI } from '../../Functions/DatosIniciales'
 import KeyboardReturn from "@material-ui/icons/KeyboardReturn";   
-import CheckCircleOutline from "@material-ui/icons/CheckCircleOutline";   
+import CheckCircleOutline from "@material-ui/icons/CheckCircleOutline";     
+import {IoReturnUpBack} from "react-icons/io5";
+import {IoReturnUpForwardOutline} from "react-icons/io5";  
 
 /* function Copyright() {
   return (
@@ -1969,7 +1971,7 @@ const Envio = async() =>{
 				onClick={()=> {
 					history.push('/Revisiones/Formatos')
 				}}>
-        <KeyboardReturn />
+        <IoReturnUpBack />
     </Button>
 	 	<Button
 				width= "25%"
@@ -1979,7 +1981,7 @@ const Envio = async() =>{
 				style={{float: 'right'}}
 				className={classes.submit}
 		    onClick={Envio}>
-		    <CheckCircleOutline />    
+		    <IoReturnUpForwardOutline />    
 		</Button>
 	 
             </form>                          

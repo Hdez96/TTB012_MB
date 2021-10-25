@@ -5,6 +5,7 @@ import Button from '@material-ui/core/Button';
 import ListAltIcon from '@material-ui/icons/ListAlt';
 import {BrowserRouter as Router,Link,Route,Switch} from 'react-router-dom';
 import Cookies from 'js-cookie';
+import {HiOutlineLogout} from "react-icons/hi";
 
 //  const history = useHistory();
   const useStyles = makeStyles((theme) => ({
@@ -36,7 +37,7 @@ const Footer = () => {
                 <List component="nav">
                     <ListItem button onClick={logout}>
                         <ListItemIcon>
-                            <ListAltIcon className={classes.icon}/>
+                            <HiOutlineLogout className={classes.icon}/>
                             <a href="/log">
                             <ListItemText
                                         disableTypography

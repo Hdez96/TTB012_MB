@@ -33,7 +33,9 @@ import {getAutobus} from "../../Functions/CedulaTRAFunctions"
 import KeyboardReturn from "@material-ui/icons/KeyboardReturn";
 import CheckCircleOutline from "@material-ui/icons/CheckCircleOutline";
 import Search from "@material-ui/icons/Search";
-import PlaylistAdd from "@material-ui/icons/PlaylistAdd"; 
+import PlaylistAdd from "@material-ui/icons/PlaylistAdd";    
+import {IoReturnUpBack} from "react-icons/io5";
+import {IoReturnUpForwardOutline} from "react-icons/io5"; 
 
 const Reffa = () => {
   const useStyles = makeStyles((theme) => ({
@@ -658,7 +660,7 @@ const Envio = async() =>{
                             onClick={()=> {
             history.push('/Revisiones/Formatos')
           }}>
-                                 <KeyboardReturn />
+                                 <IoReturnUpBack />
                     </Button>       
                     </div>
         <Button
@@ -669,7 +671,7 @@ const Envio = async() =>{
           style={{float: 'right'}}
                 className={classes.submit}                
                 onClick={Envio}>
-              <CheckCircleOutline />    
+              <IoReturnUpForwardOutline />    
         </Button>
        </form>          
     </div>

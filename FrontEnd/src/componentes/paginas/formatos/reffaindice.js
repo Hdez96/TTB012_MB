@@ -27,6 +27,7 @@ import KeyboardReturn from "@material-ui/icons/KeyboardReturn";
 import AddPhotoAlternate from "@material-ui/icons/AddPhotoAlternate";
 //import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
 import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
+import {IoReturnUpBack} from "react-icons/io5";
 
 const REFFAI = () => {
       const StyledTableCell = withStyles((theme) => ({
@@ -156,7 +157,7 @@ const REFFAI = () => {
         onClick={()=> {
             history.push('/Revisiones/Formatos')
         }}>
-      	<KeyboardReturn />
+      	<IoReturnUpBack />
 	</Button>
     
     </Container>

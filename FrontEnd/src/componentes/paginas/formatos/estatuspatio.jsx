@@ -20,7 +20,9 @@ import { Input, TextField, Container, Typography } from '@material-ui/core';
 import { sendData } from '../../Functions/EstatusPatio'
 import KeyboardReturn from "@material-ui/icons/KeyboardReturn";   
 import CheckCircleOutline from "@material-ui/icons/CheckCircleOutline";   
-import PlaylistAdd from "@material-ui/icons/PlaylistAdd"; 
+import PlaylistAdd from "@material-ui/icons/PlaylistAdd";    
+import {IoReturnUpBack} from "react-icons/io5";
+import {IoReturnUpForwardOutline} from "react-icons/io5"; 
 
 const EstatusPatio = () => {
 
@@ -421,7 +423,7 @@ const Envio = async() => {
                             onClick={()=> {
                                 history.push('/Revisiones/Formatos')
                             }}>
-                          <KeyboardReturn />
+                          <IoReturnUpBack />
                     </Button>
     <Button
             type="submit"
@@ -432,7 +434,7 @@ const Envio = async() => {
             color="secondary"
             className={classes.submit}
             onClick={Envio}>
-          <CheckCircleOutline />   
+          <IoReturnUpForwardOutline />   
     </Button>
     </Container>
     );

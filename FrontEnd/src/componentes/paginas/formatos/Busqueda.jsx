@@ -493,7 +493,7 @@ const Busqueda = () => {
 	Seleccione el tipo de formato y llene los campos a continuación.
 	{/*<br/><br/><br/><br/>*/}        
 		
-	<FormControl className={classes.paper}>
+	<FormControl className={classes.paper} align='center'>
         <InputLabel htmlFor="age-native-simple">Tipo de formato.</InputLabel>
 	
         <Select inputRef = {archivo} native onChange={handleChange} inputProps={{
@@ -554,9 +554,9 @@ const Busqueda = () => {
 
         <Button
             type="submit"
-            width= "25%"
-            align= "right"
+            style= {{backgroundColor:'#992830', width:'20%', float:'right'}}
             variant="contained"
+            color="primary"
             className={classes.submit}
             onClick={Envio}>
             <Search />

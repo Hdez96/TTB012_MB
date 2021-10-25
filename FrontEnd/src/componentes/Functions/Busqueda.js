@@ -155,8 +155,6 @@ export function EXCEL(newForm) {
                 Mes: newForm.Mes
         })
             .then((res) => {
-                        //const pdfBlob = new Blob([res.data], {type: 'application/pdf'})
-                        //saveAs(pdfBlob, 'Factura'+newForm.Año+'.pdf')
                         console.log("Creado!")
             })
         .catch(err => {

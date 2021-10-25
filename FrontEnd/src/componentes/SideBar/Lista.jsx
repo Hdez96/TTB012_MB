@@ -2,10 +2,13 @@ import React,{useEffect,useState} from 'react'
 import Cookies from 'js-cookie'
 import { useHistory } from "react-router-dom"
 import { List, ListItem, ListItemIcon, ListItemText,Typography, makeStyles } from '@material-ui/core'
-import ListAltIcon from '@material-ui/icons/ListAlt'
 import {BrowserRouter as Router,Link,Route,Switch,} from 'react-router-dom'
 import babel from 'babel-core';
 import swal from "sweetalert";
+import {FcBusinessman} from "react-icons/fc";
+import {FcEditImage} from "react-icons/fc";
+import {AiOutlineFileSearch} from "react-icons/ai";
+import {IoDocumentsOutline} from "react-icons/io5";
 
 const Lista = () => {
     const history = useHistory();
@@ -25,28 +28,28 @@ const Lista = () => {
         getLocal();
     }, []);
 
-    function createData(direccion, nombre) {
-        return {direccion, nombre};
+    function createData(direccion, nombre, icono) {
+        return {direccion, nombre, icono};
 
       }
       var rows_g = [
-                createData('/Empleados',"Empleados"),
-                createData('/Busqueda',"Búsqueda"),
-                createData('/Revisiones/Formatos',"Formatos"),
-                createData('/Header',"Cambio de logo"),
+                createData('/Empleados',"Empleados",<FcBusinessman />),
+                createData('/Busqueda',"Búsqueda",<AiOutlineFileSearch color="#FFFFFF" />),
+                createData('/Revisiones/Formatos',"Formatos",<IoDocumentsOutline color="#FFFFFF"/>),
+                createData('/Header',"Cambio de logo",<FcEditImage />),
 //                createData("/Cedulatra/BusquedaPDF","BusquedaPDF")
             ]
 
     var rows_j = [
-                createData('/Empleados',"Empleados"),
-                createData('/Busqueda',"Búsqueda"),
-                createData('/Revisiones/Formatos',"Formatos"),
-                createData('/Header',"Cambio de logo"),
+                createData('/Empleados',"Empleados",<FcBusinessman />),
+                createData('/Busqueda',"Búsqueda",<AiOutlineFileSearch color="#FFFFFF"/>),
+                createData('/Revisiones/Formatos',"Formatos",<IoDocumentsOutline color="#FFFFFF"/>),
+                createData('/Header',"Cambio de logo",<FcEditImage />),
 //                createData("/Cedulatra/BusquedaPDF","BusquedaPDF")
             ]
     var rows_e = [
-                createData('/Busqueda',"Búsqueda"),
-                createData('/Revisiones/Formatos',"Formatos"),
+                createData('/Busqueda',"Búsqueda",<AiOutlineFileSearch color="#FFFFFF"/>),
+                createData('/Revisiones/Formatos',"Formatos",<IoDocumentsOutline color="#FFFFFF"/>),
 //                createData("/Cedulatra/BusquedaPDF","BusquedaPDF")
             ]
     var row_a = []
@@ -94,7 +97,7 @@ const Lista = () => {
                                 handleclick(row.direccion)
                               }}
 >
-                            <ListAltIcon className={classes.icon}/>
+                            {row.icono}
                             <ListItemText disableTypography primary={<Typography variant="h5" style={{ color: '#FFFFFF' }} onClick={() => {                                    
                                 handleclick(row.direccion)
                               }}

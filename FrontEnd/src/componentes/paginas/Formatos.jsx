@@ -19,10 +19,10 @@ const Formatos = () => {
 
     const ColorButton = withStyles((theme) => ({
         root: {
-          color: theme.palette.getContrastText(green[500]),
-          backgroundColor: green[500],
+          color: '#FFFFFF',
+          backgroundColor: '#992830',
           '&:hover': {
-            backgroundColor: green[700],
+            backgroundColor: '#BE1A25',
           },
         },
       }))(Button);
@@ -31,7 +31,7 @@ const Formatos = () => {
 	      
       const StyledTableCell = withStyles((theme) => ({
         head: {
-          backgroundColor: theme.palette.error.light,
+          backgroundColor: '#154185',
           color: theme.palette.common.white,
           size:  'small',
         
@@ -121,13 +121,10 @@ const Formatos = () => {
           
           {rows.map((row) => (
             <StyledTableRow key={row.name}>
-              <StyledTableCell align="center" component="th" scope="row">
-                {row.name}
-              </StyledTableCell>
-              <StyledTableCell align="center"><ColorButton variant="contained" color="primary" id={row.dir} onClick={() => {                                    
+              <StyledTableCell align="center"><ColorButton style={{width:'400px'}} variant="contained" color="primary" id={row.dir} onClick={() => {                                    
                         handleclick(row.dir)
                       }} className={classes.margin}>
-                            <ListItemText primary="Crear"/>
+                            {row.name}
               </ColorButton></StyledTableCell>
 
             </StyledTableRow>

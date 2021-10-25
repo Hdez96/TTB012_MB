@@ -17,8 +17,9 @@ import ReactDOM from 'react-dom';
 import { Formik, Field, Form } from 'formik';
 import { TextField, Container, Typography } from '@material-ui/core';
 import { formRegister,PDF } from '../../Functions/CedulaTRAFunctions'
-import KeyboardReturn from "@material-ui/icons/KeyboardReturn";
-import CheckCircleOutline from "@material-ui/icons/CheckCircleOutline";
+import KeyboardReturn from "@material-ui/icons/KeyboardReturn"; 
+import {IoReturnUpBack} from "react-icons/io5";
+import {IoReturnUpForwardOutline} from "react-icons/io5";
 export default function CedulaTRA() {
 
 	function getCurrentDate(separator='')
@@ -755,7 +756,7 @@ return (
                             onClick={()=> {
 			    	history.push('/Revisiones/Formatos')
 			    }}>
-                          <KeyboardReturn />
+                          <IoReturnUpBack />
                     </Button>		    
 		    		    
 		    <Button
@@ -766,7 +767,7 @@ return (
 			    style={{float: 'right'}}
 		            className={classes.submit}
 		            onClick={submitValue}>
-		          <CheckCircleOutline />     
+		          <IoReturnUpForwardOutline />     
 		    </Button>
       	</form>
     </Container>

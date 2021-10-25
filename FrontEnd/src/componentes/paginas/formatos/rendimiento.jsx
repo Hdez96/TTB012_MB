@@ -19,7 +19,9 @@ import swal from "sweetalert";
 import { Input, TextField, Container, Typography } from '@material-ui/core';
 import { sendData } from '../../Functions/Rendimientos'
 import KeyboardReturn from "@material-ui/icons/KeyboardReturn";   
-import CheckCircleOutline from "@material-ui/icons/CheckCircleOutline";   
+import CheckCircleOutline from "@material-ui/icons/CheckCircleOutline";    
+import {IoReturnUpBack} from "react-icons/io5";
+import {IoReturnUpForwardOutline} from "react-icons/io5";   
 
 function Rendimientos() {
 
@@ -355,7 +357,7 @@ function Rendimientos() {
                             onClick={()=> {
                                 history.push('/Revisiones/Formatos')
                             }}>
-                          <KeyboardReturn />
+                          <IoReturnUpBack />
                     </Button>
             <Button
             type="submit"
@@ -367,7 +369,7 @@ function Rendimientos() {
             className={classes.submit}
                
             >
-  <CheckCircleOutline />
+  <IoReturnUpForwardOutline />
     </Button>
         </div>
     );

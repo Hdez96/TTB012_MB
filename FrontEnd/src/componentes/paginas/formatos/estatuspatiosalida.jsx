@@ -20,7 +20,9 @@ import { Input, TextField, Container, Typography } from '@material-ui/core';
 import Select from '@material-ui/core/Select';
 import {getData, Liberar} from '../../Functions/EstatusPatio'
 import KeyboardReturn from "@material-ui/icons/KeyboardReturn";   
-import CheckCircleOutline from "@material-ui/icons/CheckCircleOutline";   
+import CheckCircleOutline from "@material-ui/icons/CheckCircleOutline";     
+import {IoReturnUpBack} from "react-icons/io5";
+import {IoReturnUpForwardOutline} from "react-icons/io5";  
 
 const EstatusPatio = () => {
 
@@ -176,7 +178,7 @@ const EstatusPatio = () => {
                             onClick={()=> {
                                 history.push('/Revisiones/Formatos')
                             }}>
-                          <KeyboardReturn />
+                          <IoReturnUpBack />
                     </Button>
     
     </Container>

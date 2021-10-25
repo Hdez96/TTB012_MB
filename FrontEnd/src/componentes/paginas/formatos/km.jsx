@@ -26,15 +26,18 @@ import { sendData } from '../../Functions/Kilometraje'
 import { getEcos } from '../../Functions/CedulaTRAFunctions'
 import KeyboardReturn from "@material-ui/icons/KeyboardReturn";   
 import CheckCircleOutline from "@material-ui/icons/CheckCircleOutline";   
-import PlaylistAdd from "@material-ui/icons/PlaylistAdd"; 
+import PlaylistAdd from "@material-ui/icons/PlaylistAdd";    
+import {IoReturnUpBack} from "react-icons/io5";
+import {IoReturnUpForwardOutline} from "react-icons/io5"; 
 
 function Kilometraje() {
 	const [eco,setEco] = useState([])
   const [Mensajes, setMensajes] = useState([]);
 
+  //El encabezado de la tabla
   const StyledTableCell = withStyles((theme) => ({
         head: {
-          backgroundColor: theme.palette.error.light,
+          backgroundColor: '#154185',
           color: theme.palette.common.white,
           size:  'small',
         
@@ -51,7 +54,7 @@ function Kilometraje() {
           },
         },
       }))(TableRow);
-      
+      //Botones
       const useStyles = makeStyles((theme) => ({
         paper: {
           marginTop: theme.spacing(8),
@@ -380,6 +383,8 @@ function Kilometraje() {
             <Input id="standart-basic" type="number" size="small" inputRef={aumrow}/>
             <Button
                  className={classes.submit} 
+                variant="contained"
+                color="secondary"
                  onClick={handletablaidow}><PlaylistAdd /></Button>
                  &nbsp;
        {/*     <Button className={classes.submit} 
@@ -398,7 +403,7 @@ function Kilometraje() {
                             onClick={()=> {
                                 history.push('/Revisiones/Formatos')
                             }}>
-                                 <KeyboardReturn />
+                                 <IoReturnUpBack />
                     </Button>
             <Button
             type="submit"
@@ -410,7 +415,7 @@ function Kilometraje() {
             className={classes.submit}
             onClick={Envio}
             >
-          <CheckCircleOutline />    
+          <IoReturnUpForwardOutline />    
     </Button>
         </div>
     );
