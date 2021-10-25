@@ -68,6 +68,16 @@ const Formatos = () => {
         createData('Rendimientos','/rendimiento')
       ];      
 
+      const Disponible= (row)=>{
+        if(row.name=="Consumo de combustible")
+          return true;
+        else if(row.name=="Kilometraje")
+          return true;
+        else{
+          return false;
+        }
+      }
+
       const useStyles = makeStyles(theme => ({
         table: {
             minWidth: 50
@@ -123,7 +133,7 @@ const Formatos = () => {
             <StyledTableRow key={row.name}>
               <StyledTableCell align="center"><ColorButton style={{width:'400px'}} variant="contained" color="primary" id={row.dir} onClick={() => {                                    
                         handleclick(row.dir)
-                      }} className={classes.margin}>
+                      }} className={classes.margin} disabled={Disponible(row)}>
                             {row.name}
               </ColorButton></StyledTableCell>
 
