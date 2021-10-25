@@ -367,7 +367,7 @@ function Rendimientos() {
             variant="contained"
             color="secondary"
             className={classes.submit}
-               
+            onClick={Envio}
             >
   <IoReturnUpForwardOutline />
     </Button>

@@ -28,7 +28,7 @@ import KeyboardReturn from "@material-ui/icons/KeyboardReturn";
 import CheckCircleOutline from "@material-ui/icons/CheckCircleOutline";   
 import PlaylistAdd from "@material-ui/icons/PlaylistAdd";    
 import {IoReturnUpBack} from "react-icons/io5";
-import {IoReturnUpForwardOutline} from "react-icons/io5"; 
+import {IoReturnUpForwardOutline} from "react-icons/io5";
 
 function Kilometraje() {
 	const [eco,setEco] = useState([])
@@ -37,7 +37,7 @@ function Kilometraje() {
   //El encabezado de la tabla
   const StyledTableCell = withStyles((theme) => ({
         head: {
-          backgroundColor: '#154185',
+          backgroundColor: '#7D2027',
           color: theme.palette.common.white,
           size:  'small',
         
@@ -385,6 +385,7 @@ function Kilometraje() {
                  className={classes.submit} 
                 variant="contained"
                 color="secondary"
+                style={{backgroundColor:"#CC353F"}}
                  onClick={handletablaidow}><PlaylistAdd /></Button>
                  &nbsp;
        {/*     <Button className={classes.submit} 
@@ -398,6 +399,7 @@ function Kilometraje() {
                             align= "left"
                             variant="contained"
                             color="secondary"
+                            style={{backgroundColor:"#CC353F"}}
                             className={classes.submit}
                             type="submit"
                             onClick={()=> {
@@ -409,7 +411,7 @@ function Kilometraje() {
             type="submit"
             width= "25%"
             align= "right"
-	    style={{float:"right"}}
+	           style={{float:"right", backgroundColor:"#CC353F"}}
             variant="contained"
             color="secondary"
             className={classes.submit}

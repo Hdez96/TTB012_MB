@@ -5,8 +5,8 @@ import { List, ListItem, ListItemIcon, ListItemText,Typography, makeStyles } fro
 import {BrowserRouter as Router,Link,Route,Switch,} from 'react-router-dom'
 import babel from 'babel-core';
 import swal from "sweetalert";
-import {FcBusinessman} from "react-icons/fc";
-import {FcEditImage} from "react-icons/fc";
+import {IoPersonOutline} from "react-icons/io5";
+import {RiImageEditLine} from "react-icons/ri";
 import {AiOutlineFileSearch} from "react-icons/ai";
 import {IoDocumentsOutline} from "react-icons/io5";
 
@@ -33,18 +33,18 @@ const Lista = () => {
 
       }
       var rows_g = [
-                createData('/Empleados',"Empleados",<FcBusinessman />),
+                createData('/Empleados',"Empleados",<IoPersonOutline color="#FFFFFF" />),
                 createData('/Busqueda',"Búsqueda",<AiOutlineFileSearch color="#FFFFFF" />),
                 createData('/Revisiones/Formatos',"Formatos",<IoDocumentsOutline color="#FFFFFF"/>),
-                createData('/Header',"Cambio de logo",<FcEditImage />),
+                createData('/Header',"Cambio de logo",<RiImageEditLine color="#FFFFFF" />),
 //                createData("/Cedulatra/BusquedaPDF","BusquedaPDF")
             ]
 
     var rows_j = [
-                createData('/Empleados',"Empleados",<FcBusinessman />),
+                createData('/Empleados',"Empleados",<IoPersonOutline color="#FFFFFF" />),
                 createData('/Busqueda',"Búsqueda",<AiOutlineFileSearch color="#FFFFFF"/>),
                 createData('/Revisiones/Formatos',"Formatos",<IoDocumentsOutline color="#FFFFFF"/>),
-                createData('/Header',"Cambio de logo",<FcEditImage />),
+                createData('/Header',"Cambio de logo",<RiImageEditLine color="#FFFFFF" />),
 //                createData("/Cedulatra/BusquedaPDF","BusquedaPDF")
             ]
     var rows_e = [
