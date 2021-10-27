@@ -28,17 +28,17 @@ const EstatusPatio = () => {
 
   const ColorButton = withStyles((theme) => ({
         root: {
-          color: theme.palette.getContrastText(green[500]),
-          backgroundColor: green[500],
+          color: '#FFFFFF',
+          backgroundColor: '#992830',
           '&:hover': {
-            backgroundColor: green[700],
+            backgroundColor: '#BE1A25',
           },
         },
       }))(Button);
 
       const StyledTableCell = withStyles((theme) => ({
         head: {
-          backgroundColor: theme.palette.error.light,
+          backgroundColor: '#7D2027',
           color: theme.palette.common.white,
           size:  'small',
         
@@ -173,12 +173,13 @@ const EstatusPatio = () => {
                             align= "left"
                             variant="contained"
                             color="secondary"
+                            style={{backgroundColor:"#CC353F"}}
                             className={classes.submit}
                             type="submit"
                             onClick={()=> {
                                 history.push('/Revisiones/Formatos')
                             }}>
-                          <IoReturnUpBack />
+                          <IoReturnUpBack size={20}/>
                     </Button>
     
     </Container>

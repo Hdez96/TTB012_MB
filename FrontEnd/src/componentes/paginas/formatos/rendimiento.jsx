@@ -19,7 +19,8 @@ import swal from "sweetalert";
 import { Input, TextField, Container, Typography } from '@material-ui/core';
 import { sendData } from '../../Functions/Rendimientos'
 import KeyboardReturn from "@material-ui/icons/KeyboardReturn";   
-import CheckCircleOutline from "@material-ui/icons/CheckCircleOutline";    
+import CheckCircleOutline from "@material-ui/icons/CheckCircleOutline"; 
+import PlaylistAdd from "@material-ui/icons/PlaylistAdd";    
 import {IoReturnUpBack} from "react-icons/io5";
 import {IoReturnUpForwardOutline} from "react-icons/io5";   
 
@@ -29,7 +30,7 @@ function Rendimientos() {
 
   const StyledTableCell = withStyles((theme) => ({
         head: {
-          backgroundColor: theme.palette.error.light,
+          backgroundColor: '#7D2027',
           color: theme.palette.common.white,
           size:  'small',
         
@@ -338,8 +339,11 @@ function Rendimientos() {
             &nbsp;&nbsp;
             <Input id="standart-basic" type="number" size="small" inputRef={aumrow}/>
             <Button
+                variant="contained"
+                color="secondary"
+                style={{backgroundColor:"#CC353F"}}
                  className={classes.submit} 
-                 onClick={handletablaidow}>Agregar Fila</Button>
+                 onClick={handletablaidow}><PlaylistAdd /></Button>
                  &nbsp;
       {/*      <Button className={classes.submit} 
                  onClick={handletablaidow}onClick={handleRemoveRow}>
@@ -352,24 +356,25 @@ function Rendimientos() {
                             align= "left"
                             variant="contained"
                             color="secondary"
+                            style={{backgroundColor:"#CC353F"}}
                             className={classes.submit}
                             type="submit"
                             onClick={()=> {
                                 history.push('/Revisiones/Formatos')
                             }}>
-                          <IoReturnUpBack />
+                          <IoReturnUpBack size={20}/>
                     </Button>
             <Button
             type="submit"
             width= "25%"
             align= "right"
-	    style={{float:"right"}}
+	         style={{float:"right",backgroundColor:"#CC353F"}}
             variant="contained"
             color="secondary"
             className={classes.submit}
             onClick={Envio}
             >
-  <IoReturnUpForwardOutline />
+  <IoReturnUpForwardOutline size={20}/>
     </Button>
         </div>
     );

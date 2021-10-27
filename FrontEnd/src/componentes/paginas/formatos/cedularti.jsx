@@ -61,7 +61,7 @@ import {IoReturnUpForwardOutline} from "react-icons/io5";
 
 const StyledTableCell = withStyles((theme) => ({
         head: {
-          backgroundColor: theme.palette.error.light,
+          backgroundColor: '#7D2027',
           color: theme.palette.common.white,
           size:  'small',
         
@@ -1669,23 +1669,24 @@ const submitValue = async() => {
                             align= "left"
                             variant="contained"
                             color="secondary"
+                            style={{backgroundColor:"#CC353F"}}
                             className={classes.submit}
                             type="submit"
                             onClick={()=> {
 			    	history.push('/Revisiones/Formatos')
 			    }}>
-                           <IoReturnUpBack />
+                           <IoReturnUpBack size={20}/>
                     </Button>	
 			<Button
 		            width= "25%"
 		            align= "right"
 		            variant="contained"
 		            color="secondary"
-			    style={{float: 'right'}}
+			    style={{float: 'right',backgroundColor:"#CC353F"}}
 		            className={classes.submit}
 		            
 		            onClick={submitValue}>
-		          <IoReturnUpForwardOutline />   
+		          <IoReturnUpForwardOutline size={20}/>   
 		    </Button>
           </form>
 				

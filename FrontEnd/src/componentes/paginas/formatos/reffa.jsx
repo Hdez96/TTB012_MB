@@ -55,16 +55,16 @@ const Reffa = () => {
     const ColorButton = withStyles((theme) => ({
         root: {
           color: theme.palette.getContrastText(green[500]),
-          backgroundColor: green[500],
+          backgroundColor: '#992830',
           '&:hover': {
-            backgroundColor: green[700],
+            backgroundColor: '#BE1A25',
           },
         },
       }))(Button);
       
       const StyledTableCell = withStyles((theme) => ({
         head: {
-          backgroundColor: theme.palette.error.light,
+          backgroundColor: '#7D2027',
           color: theme.palette.common.white,
           size:  'small',
         
@@ -469,6 +469,9 @@ const Envio = async() =>{
         </TableBody>  
         </Table>
         <Button
+          variant="contained"
+          color="secondary"
+          style={{backgroundColor:"#CC353F"}}
            className={classes.submit}
 	   align="center" 
            onClick={prueba}><Search />
@@ -584,6 +587,9 @@ const Envio = async() =>{
         &nbsp;&nbsp;
         <Input id="standart-basic" type="number" size="small" inputRef = {aumrow}/>&nbsp;&nbsp;
         <Button
+          variant="contained"
+          color="secondary"
+          style={{backgroundColor:"#CC353F"}}
            className={classes.submit} 
            onClick={handletablaidow}><PlaylistAdd />
         </Button>
@@ -655,12 +661,12 @@ const Envio = async() =>{
                             align= "left"
                             variant="contained"
                             color="secondary"
+                            style={{backgroundColor:"#CC353F"}}
                             className={classes.submit}
-                            
                             onClick={()=> {
             history.push('/Revisiones/Formatos')
           }}>
-                                 <IoReturnUpBack />
+                                 <IoReturnUpBack size={20}/>
                     </Button>       
                     </div>
         <Button
@@ -668,10 +674,10 @@ const Envio = async() =>{
                 align= "right"
                 variant="contained"
                 color="secondary"
-          style={{float: 'right'}}
+          style={{float: 'right',backgroundColor:"#CC353F"}}
                 className={classes.submit}                
                 onClick={Envio}>
-              <IoReturnUpForwardOutline />    
+              <IoReturnUpForwardOutline size={20}/>    
         </Button>
        </form>          
     </div>

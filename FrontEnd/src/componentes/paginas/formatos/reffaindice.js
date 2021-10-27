@@ -32,7 +32,7 @@ import {IoReturnUpBack} from "react-icons/io5";
 const REFFAI = () => {
       const StyledTableCell = withStyles((theme) => ({
         head: {
-          backgroundColor: theme.palette.error.light,
+          backgroundColor: '#7D2027',
           color: theme.palette.common.white,
           size:  'small',
         
@@ -132,7 +132,7 @@ const REFFAI = () => {
                     <StyledTableCell align="center">{row.Fecha}</StyledTableCell>
                     <StyledTableCell align="center">{row.PersonaElaboro}</StyledTableCell>
                       <TableCell align="center">
-                    <Button variant="contained" name = {row.NumeroEconomico}  color="primary" onClick={() => {                                    
+                    <Button variant="contained" name = {row.NumeroEconomico} variant="contained" color="secondary" style={{backgroundColor:"#CC353F"}} onClick={() => {                                    
                         console.log(row)
                         localStorage.setItem("Autobus",	row.NumeroEconomico)
                         history.replace("/reffafoto")
@@ -152,12 +152,13 @@ const REFFAI = () => {
         align= "left"
         variant="contained"
         color="secondary"
+        style={{backgroundColor:"#CC353F"}}
         className={classes.submit}
         type="submit"
         onClick={()=> {
             history.push('/Revisiones/Formatos')
         }}>
-      	<IoReturnUpBack />
+      	<IoReturnUpBack size={20} />
 	</Button>
     
     </Container>

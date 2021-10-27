@@ -30,7 +30,7 @@ const ConsumoMantenimiento = () => {
 
       const StyledTableCell = withStyles((theme) => ({
         head: {
-          backgroundColor: theme.palette.error.light,
+          backgroundColor: '#7D2027',
           color: theme.palette.common.white,
           size:  'small',
         
@@ -618,6 +618,9 @@ const ConsumoMantenimiento = () => {
       <Input id="standart-basic" type="number" size="small" inputRef={aumrow}/>
       <Button
                  className={classes.submit} 
+                 style={{backgroundColor:"#CC353F"}}
+                 variant="contained"
+                 color="secondary"
                  onClick={handletablaidow}><PlaylistAdd /></Button>
                  &nbsp;
 {/*            <Button className={classes.submit} 
@@ -749,7 +752,10 @@ const ConsumoMantenimiento = () => {
       <Input id="standart-basic" type="number" size="small" inputRef={aumroww}/>
       <Button
                  className={classes.submit} 
-                 onClick={handletablaidoww}> </Button>
+                 style={{backgroundColor:"#CC353F"}}
+                 variant="contained"
+                  color="secondary"
+                 onClick={handletablaidoww}> <PlaylistAdd /> </Button>
                  &nbsp;
       {/*      <Button className={classes.submit} 
                  onClick={handletablaidoww}onClick={handleRemoveRoww}>
@@ -764,21 +770,22 @@ const ConsumoMantenimiento = () => {
                             color="secondary"
                             className={classes.submit}
                             type="submit"
+                            style={{backgroundColor:"#CC353F"}}
                             onClick={()=> {
                                 history.push('/Revisiones/Formatos')
                             }}>
-                          <IoReturnUpBack />
+                          <IoReturnUpBack size={20}/>
                     </Button>
     <Button
             type="submit"
             width= "25%"
             align= "right"
-      style={{float:"right"}}
+      style={{float:"right",backgroundColor:"#CC353F"}}
             variant="contained"
             color="secondary"
             className={classes.submit}
             onClick={Envio}>
-          <IoReturnUpForwardOutline /> 
+          <IoReturnUpForwardOutline size={20}/> 
     </Button>
     </Container>
     );

@@ -296,7 +296,7 @@ function Consumo() {
                             onClick={()=> {
                                 history.push('/Revisiones/Formatos')
                             }}>
-                          <IoReturnUpBack />
+                          <IoReturnUpBack size={20}/>
                     </Button>     
             <Button
             type="submit"
@@ -308,7 +308,7 @@ function Consumo() {
             className={classes.submit}
             onClick={Envio}
             >
-          <IoReturnUpForwardOutline />    
+          <IoReturnUpForwardOutline size={20}/>    
     </Button>
         </div>
     );

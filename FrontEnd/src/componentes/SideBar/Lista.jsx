@@ -33,23 +33,23 @@ const Lista = () => {
 
       }
       var rows_g = [
-                createData('/Empleados',"Empleados",<IoPersonOutline color="#FFFFFF" />),
-                createData('/Busqueda',"Búsqueda",<AiOutlineFileSearch color="#FFFFFF" />),
-                createData('/Revisiones/Formatos',"Formatos",<IoDocumentsOutline color="#FFFFFF"/>),
-                createData('/Header',"Cambio de logo",<RiImageEditLine color="#FFFFFF" />),
+                createData('/Empleados',"Empleados",<IoPersonOutline color="#FFFFFF" size={20} />),
+                createData('/Busqueda',"Búsqueda",<AiOutlineFileSearch color="#FFFFFF" size={20} />),
+                createData('/Revisiones/Formatos',"Formatos",<IoDocumentsOutline color="#FFFFFF" size={20} />),
+                createData('/Header',"Cambio de logo",<RiImageEditLine color="#FFFFFF" size={20} />),
 //                createData("/Cedulatra/BusquedaPDF","BusquedaPDF")
             ]
 
     var rows_j = [
-                createData('/Empleados',"Empleados",<IoPersonOutline color="#FFFFFF" />),
-                createData('/Busqueda',"Búsqueda",<AiOutlineFileSearch color="#FFFFFF"/>),
-                createData('/Revisiones/Formatos',"Formatos",<IoDocumentsOutline color="#FFFFFF"/>),
-                createData('/Header',"Cambio de logo",<RiImageEditLine color="#FFFFFF" />),
+                createData('/Empleados',"Empleados",<IoPersonOutline color="#FFFFFF" size={20} />),
+                createData('/Busqueda',"Búsqueda",<AiOutlineFileSearch color="#FFFFFF"size={20} />),
+                createData('/Revisiones/Formatos',"Formatos",<IoDocumentsOutline color="#FFFFFF"size={20} />),
+                createData('/Header',"Cambio de logo",<RiImageEditLine color="#FFFFFF" size={20} />),
 //                createData("/Cedulatra/BusquedaPDF","BusquedaPDF")
             ]
     var rows_e = [
-                createData('/Busqueda',"Búsqueda",<AiOutlineFileSearch color="#FFFFFF"/>),
-                createData('/Revisiones/Formatos',"Formatos",<IoDocumentsOutline color="#FFFFFF"/>),
+                createData('/Busqueda',"Búsqueda",<AiOutlineFileSearch color="#FFFFFF" size={20} />),
+                createData('/Revisiones/Formatos',"Formatos",<IoDocumentsOutline color="#FFFFFF" size={20} />),
 //                createData("/Cedulatra/BusquedaPDF","BusquedaPDF")
             ]
     var row_a = []

@@ -30,7 +30,7 @@ const EstatusPatio = () => {
 
       const StyledTableCell = withStyles((theme) => ({
         head: {
-          backgroundColor: theme.palette.error.light,
+          backgroundColor: '#7D2027',
           color: theme.palette.common.white,
           size:  'small',
         
@@ -404,7 +404,10 @@ const Envio = async() => {
       &nbsp;&nbsp;
       <Input id="standart-basic" type="number" size="small" inputRef={aumrow}/>
       <Button
-                 className={classes.submit} 
+                 className={classes.submit}
+                 style={{backgroundColor:"#CC353F"}} 
+                 variant="contained"
+                 color="secondary"
                  onClick={handletablaidow}><PlaylistAdd /></Button>
                  &nbsp;
      {/*       <Button className={classes.submit} 
@@ -418,23 +421,24 @@ const Envio = async() => {
                             align= "left"
                             variant="contained"
                             color="secondary"
+                            style={{backgroundColor:"#CC353F"}}
                             className={classes.submit}
                             type="submit"
                             onClick={()=> {
                                 history.push('/Revisiones/Formatos')
                             }}>
-                          <IoReturnUpBack />
+                          <IoReturnUpBack size={20}/>
                     </Button>
     <Button
             type="submit"
             width= "25%"
             align= "right"
-      style={{float:"right"}}
+      style={{float:"right",backgroundColor:"#CC353F"}}
             variant="contained"
             color="secondary"
             className={classes.submit}
             onClick={Envio}>
-          <IoReturnUpForwardOutline />   
+          <IoReturnUpForwardOutline size={20}/>   
     </Button>
     </Container>
     );

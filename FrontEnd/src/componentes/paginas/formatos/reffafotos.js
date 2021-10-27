@@ -22,23 +22,25 @@ import {getData, Liberar} from '../../Functions/EstatusPatio';
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import IconButton from '@material-ui/core/IconButton';
 import {getFallos,sendFoto} from '../../Functions/Codigos_REFFA'
-import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
+import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';    
+import {IoReturnUpBack} from "react-icons/io5";
+import {IoReturnUpForwardOutline} from "react-icons/io5"; 
 
 const REFFAF = () => {
 
   const ColorButton = withStyles((theme) => ({
         root: {
           color: theme.palette.getContrastText(green[500]),
-          backgroundColor: green[500],
+          backgroundColor: '#992830',
           '&:hover': {
-            backgroundColor: green[700],
+            backgroundColor: '#BE1A25',
           },
         },
       }))(Button);
 
       const StyledTableCell = withStyles((theme) => ({
         head: {
-          backgroundColor: theme.palette.error.light,
+          backgroundColor: '#7D2027',
           color: theme.palette.common.white,
           size:  'small',
         
@@ -277,24 +279,25 @@ const Envio = async() => {
             align= "left"
             variant="contained"
             color="secondary"
+            style={{backgroundColor:"#CC353F"}}
             className={classes.submit}
             type="submit"
             onClick={()=> {
                 history.push('/reffaindice')
             }}>
-          Anterior
+          <IoReturnUpBack size={20}/>
     </Button>
     <Button
 	    type="submit"
 	    width= "25%"
 	    align= "right"
-		style={{float:"right"}}
+		style={{float:"right",backgroundColor:"#CC353F"}}
 	    variant="contained"
 	    color="secondary"
 	    className={classes.submit}
 	    onClick={Envio}
     >
-          Finalizar
+          <IoReturnUpForwardOutline size={20}/>
     </Button>
     </Container>
     );

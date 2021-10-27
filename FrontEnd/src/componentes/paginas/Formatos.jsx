@@ -31,7 +31,7 @@ const Formatos = () => {
 	      
       const StyledTableCell = withStyles((theme) => ({
         head: {
-          backgroundColor: '#154185',
+          backgroundColor: '#7D2027',
           color: theme.palette.common.white,
           size:  'small',
         

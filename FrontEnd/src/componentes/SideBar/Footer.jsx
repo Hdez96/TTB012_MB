@@ -37,7 +37,7 @@ const Footer = () => {
                 <List component="nav">
                     <ListItem button onClick={logout}>
                         <ListItemIcon>
-                            <HiOutlineLogout className={classes.icon}/>
+                            <HiOutlineLogout className={classes.icon} size={20} />
                             <a href="/log">
                             <ListItemText
                                         disableTypography

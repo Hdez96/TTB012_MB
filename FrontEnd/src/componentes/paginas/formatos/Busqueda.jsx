@@ -74,7 +74,7 @@ const Busqueda = () => {
 
   const StyledTableCell = withStyles((theme) => ({
     head: {
-      backgroundColor: theme.palette.error.light,
+      backgroundColor: '#7D2027',
       color: theme.palette.common.white,
       size:  'small',
 
@@ -554,7 +554,7 @@ const Busqueda = () => {
 
         <Button
             type="submit"
-            style= {{backgroundColor:'#992830', width:'20%', float:'right'}}
+            style= {{backgroundColor:'#CC353F', width:'20%', float:'right'}}
             variant="contained"
             color="primary"
             className={classes.submit}
@@ -587,6 +587,7 @@ const Busqueda = () => {
                     width= "25%"
                     align= "right"
                     variant="contained"
+                    color="secondary"
                     className={classes.submit}
                     onClick={() => {                                    
                         downloadPDF(row.NombrePDF,row.Ruta)
@@ -596,7 +597,7 @@ const Busqueda = () => {
                  <Button
                                     type="submit"
                                     variant="contained"
-                                    color="Primary"
+                                    color="primary"
                                     className={classes.button}
                                     startIcon={<AssignmentIcon />}
                                     onClick={() => {
