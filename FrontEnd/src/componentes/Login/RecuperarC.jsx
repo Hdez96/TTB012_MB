@@ -89,7 +89,7 @@ useEffect(() => {
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
+        <Avatar className={classes.avatar} style={{backgroundColor:"#CC353F"}}>
           <TrainIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
@@ -114,6 +114,7 @@ useEffect(() => {
                 fullWidth
                 variant="contained"
                 color="secondary"
+                style={{backgroundColor:"#CC353F"}}
                 className={classes.submit}
                 activeClassName="active"
               >

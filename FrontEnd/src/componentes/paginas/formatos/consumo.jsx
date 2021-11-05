@@ -282,7 +282,7 @@ function Consumo() {
             <Input id="standart-basic" type="number" size="small" inputRef={aumrow}/>
             <Button
                  className={classes.submit} 
-                 onClick={handletablaidow}><PlaylistAdd /></Button>
+                 onClick={handletablaidow} style={{backgroundColor:"#CC353F"}} variant="contained" color="secondary"><PlaylistAdd /></Button>
                  &nbsp;
 
            </TableContainer>
@@ -291,7 +291,7 @@ function Consumo() {
                             align= "left"
                             variant="contained"
                             color="secondary"
-                            stule={{backgroundColor:"#CC353F"}}
+                            style={{backgroundColor:"#CC353F"}}
                             className={classes.submit}
                             type="submit"
                             onClick={()=> {
