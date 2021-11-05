@@ -208,7 +208,7 @@ function Consumo() {
             })
         }
       }
-    history.replace("/Revisiones/Formatos")   
+    //history.replace("/Revisiones/Formatos")   
       
     }
 

@@ -32,6 +32,7 @@
     "react": "^16.14.0",
     "react-avatar-uploader": "^1.0.3",
     "react-dom": "^16.14.0",
+    "react-icons": "^4.3.1",
     "react-image-file": "^0.3.0",
     "react-images-uploading": "^3.1.2",
     "react-overlay-trigger": "^1.0.5",

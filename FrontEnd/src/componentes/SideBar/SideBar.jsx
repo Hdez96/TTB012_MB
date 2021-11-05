@@ -30,11 +30,11 @@ const useStyles = makeStyles(theme => ({
         
     },
     badge: {
-        color: theme.palette.success.main,
+        color: 'white',
     },
 
     backMB:{
-        background:'#4caf50'
+        background:'#4caf50' //#4caf50
     }
 }))
 //<img src="/images/avatars/CDMX.png" width="240" height="50"/>
@@ -62,7 +62,7 @@ const SideBar = (props) => {
         <div>
             <AppBar className={classes.appBar}>
                 <Toolbar>
-                <IconButton color="inherit" aria-label="menu"
+                <IconButton color="#7D2027" aria-label="menu" style={{backgroundColor:'#7D2027'}}
                     className={classes.menuButton}
                     onClick={() => props.handleDrawerToggle()}>
                     <MenuIcon />
