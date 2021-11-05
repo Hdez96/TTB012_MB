@@ -230,7 +230,7 @@ export default function User() {
         onChange={handleChange}
       />
       <label htmlFor="raised-button-file">
-      <Button variant="contained" color="primary" component="span">
+      <Button variant="contained" color="primary" component="span" style={{backgroundColor:"#CC353F"}}>
           <AddAPhotoIcon/>
         </Button>
 </label> 
@@ -359,6 +359,7 @@ export default function User() {
             fullWidth
             variant="contained"
             color="secondary"
+            style={{backgroundColor:"#CC353F"}}
             className={classes.submit}
             onClick={Envio}
             activeClassName="active"

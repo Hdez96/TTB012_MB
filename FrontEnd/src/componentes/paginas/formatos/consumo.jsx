@@ -31,7 +31,7 @@ function Consumo() {
 
   const StyledTableCell = withStyles((theme) => ({
         head: {
-          backgroundColor: theme.palette.error.light,
+          backgroundColor: '#7D2027',
           color: theme.palette.common.white,
           size:  'small',
         
@@ -291,6 +291,7 @@ function Consumo() {
                             align= "left"
                             variant="contained"
                             color="secondary"
+                            stule={{backgroundColor:"#CC353F"}}
                             className={classes.submit}
                             type="submit"
                             onClick={()=> {
@@ -302,7 +303,7 @@ function Consumo() {
             type="submit"
             width= "25%"
             align= "right"
-      style={{float:"right"}}
+            style={{float:"right",backgroundColor:"#CC353F"}}
             variant="contained"
             color="secondary"
             className={classes.submit}

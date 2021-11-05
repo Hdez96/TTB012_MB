@@ -67,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: "#CC353F",
   },
   form: {
     width: '100%', // Fix IE 11 issue.
@@ -169,7 +169,7 @@ useEffect(() => {
       <Grid item xs={false} sm={4} md={7} className={classes.image} />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
         <div className={classes.paper}>
-          <Avatar className={classes.avatar}>
+          <Avatar className={classes.avatar} >
             <TrainIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
