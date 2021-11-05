@@ -70,9 +70,9 @@ const Formatos = () => {
 
       const Disponible= (row)=>{
         if(row.name=="Consumo de combustible")
-          return true;
+          return false;
         else if(row.name=="Kilometraje")
-          return true;
+          return false;
         else{
           return false;
         }
