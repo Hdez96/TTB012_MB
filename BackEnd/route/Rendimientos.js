@@ -9,7 +9,7 @@ const bcrypt = require('bcryptjs')
 var pdf = require('pdf-creator-node')
 var fs = require('fs')
 var options = {
-	format: 'Letter'
+    format: 'Letter'
 }
 
 var pdfName = ""
@@ -21,16 +21,16 @@ rendimientos.use(cors())
 process.env.SECRET_KEY = 'secret'
 
 rendimientos.post('/rendimientos',async (req, res) => {
-	const today = new Date().toJSON()
-	const formData = {
-		NumeroEconomico: req.body.NumeroEconomico,
-		Kilometraje: req.body.Kilometraje,
-		ConsumoDiesel: req.body.ConsumoDiesel,
-		RendimientoDiesel: req.body.RendimientoDiesel,
-		Periodo: req.body.Periodo,
-		Año: req.body.Año,
-	}
-	Rendimientos.findOne({
+    const today = new Date().toJSON()
+    const formData = {
+        NumeroEconomico: req.body.NumeroEconomico,
+        Kilometraje: req.body.Kilometraje,
+        ConsumoDiesel: req.body.ConsumoDiesel,
+        RendimientoDiesel: req.body.RendimientoDiesel,
+        Periodo: req.body.Periodo,
+        Año: req.body.Año,
+    }
+    Rendimientos.findOne({
         where: { 
           NumeroEconomico: req.body.NumeroEconomico,
           Periodo: req.body.Periodo
@@ -41,7 +41,7 @@ rendimientos.post('/rendimientos',async (req, res) => {
             Rendimientos.create(formData)
             .then(rendimientos => {
                 console.log("Registrado.")
-				res.send({ status: 'Registrado!' })
+                res.send({ status: 'Registrado!' })
             })
             .catch(err => {
                 console.log(err)
@@ -212,71 +212,71 @@ rendimientos.post('/RendimientosPDF', (req,res) => {
             }
             })
             .then(async(fotos) => {
-            var html = fs.readFileSync(path.join(__dirname, '../Documents/Templates/Rendimientos.html'),'utf-8');
-            var options = {
-                        phantomPath: path.resolve(
-                    process.cwd(),
-                        "node_modules/phantomjs/bin/phantomjs"
-                ),
-                    format: "A3",
-                        orientation: "portrait",
-                        border: "0mm",
-                        header: {
-                            height: "0mm",
-                            contents: '<div style="text-align: center;"></div>'
-                        },
-                        "footer": {
-                            "height": "0mm",
-                            "contents": {
-                                first: ' ',
-                                default: '<span style="color: #444;">{{page}}</span>/<span>{{pages}}</span>', // fallback value
-                                last: ' '
+                var html = fs.readFileSync(path.join(__dirname, '../Documents/Templates/Rendimientos.html'),'utf-8');
+                var options = {
+                            phantomPath: path.resolve(
+                        process.cwd(),
+                            "node_modules/phantomjs/bin/phantomjs"
+                    ),
+                        format: "A3",
+                            orientation: "portrait",
+                            border: "0mm",
+                            header: {
+                                height: "0mm",
+                                contents: '<div style="text-align: center;"></div>'
+                            },
+                            "footer": {
+                                "height": "0mm",
+                                "contents": {
+                                    first: ' ',
+                                    default: '<span style="color: #444;">{{page}}</span>/<span>{{pages}}</span>', // fallback value
+                                    last: ' '
+                                }
                             }
-                        }
-                    };
-            var users=[]
-            for(const valor in obj){
-                var objeto = {
-                    NumeroEconomico: obj[valor].NumeroEconomico,
-                    Kilometraje: obj[valor].Kilometraje,
-                    ConsumoDiesel: obj[valor].ConsumoDiesel,
-                    RendimientoDiesel: obj[valor].RendimientoDiesel,
-                    Periodo: obj[valor].Periodo,
-                    Año: obj[valor].Año
+                        };
+                var users=[]
+                for(const valor in obj){
+                    var objeto = {
+                        NumeroEconomico: obj[valor].NumeroEconomico,
+                        Kilometraje: obj[valor].Kilometraje,
+                        ConsumoDiesel: obj[valor].ConsumoDiesel,
+                        RendimientoDiesel: obj[valor].RendimientoDiesel,
+                        Periodo: obj[valor].Periodo,
+                        Año: obj[valor].Año
+                    }
+                    users.push(objeto)
                 }
-                users.push(objeto)
-            }
-            const imgTest = {                            
-                Foto1: new Buffer( fotos.Foto, 'binary' ).toString('ascii'),                            
-            }
-
-            var document = {
-                html: html,
-                data: {
-                    users: users,
-                    header: imgTest
-                },
-                path:  path.join(__dirname, '../Documents/Rendimientos/Rendimiento-') + req.body.Periodo + ".pdf"
-            }
-            pdfName = "Rendimiento"+ req.body.Periodo+".pdf"
-            pdf.create(document,options)
-            .then(res => {
-                //res.send(Promise.reject());
-                console.log("Creado.")
+                const imgTest = {                            
+                    Foto1: new Buffer( fotos.Foto, 'binary' ).toString('ascii'),                            
+                }
+    
+                var document = {
+                    html: html,
+                    data: {
+                        users: users,
+                        eader: imgTest
+                    },
+                    path:  path.join(__dirname, '../Documents/Rendimientos/Rendimiento-') + req.body.Periodo + ".pdf"
+                }
+                pdfName = "Rendimiento"+ req.body.Periodo+".pdf"
+                pdf.create(document,options)
+                .then(res => {
+                    //res.send(Promise.reject());
+                    console.log("Creado.")
+                })
+                .catch(error => {
+                    //res.send(Promise.resolve());
+                    console.log(error)
+                })
+        //        console.log(obj)
+                res.send({success:true, data:obj});
             })
-            .catch(error => {
-                //res.send(Promise.resolve());
-                console.log(error)
+            .catch(err=>{
+                res.send({success:false, message:err});
             })
-    //        console.log(obj)
-            res.send({success:true, data:obj});
-    })
+        })
     .catch(err=>{
-        res.send({success:false, message:err});
-        res.send({success:true, data:obj});
-    })
-    .catch(err=>{
-        res.send({success:false, message:err});
+        res.send({success:false, message: err});
     })
 })
 
@@ -288,7 +288,7 @@ rendimientos.post('/getData', (req,res) => {
         let mesActual = obj[0].Periodo
         for(let valor in obj)
         {
-//		console.log(obj[valor].Periodo)
+//      console.log(obj[valor].Periodo)
             if(mesActual != obj[valor].Periodo)
             {
                 let data ={
@@ -303,11 +303,11 @@ rendimientos.post('/getData', (req,res) => {
                 let data ={
                     NombrePDF: "Rendimiento-"+obj[obj.length-1].Periodo,
                     Ruta: "/Rendimientos/fetch-pdf",
-		    RutaExcel: "/Rendimientos/fetch-excel"
+            RutaExcel: "/Rendimientos/fetch-excel"
                 }
                 datos.push(data)
             
-	console.log(datos)
+    console.log(datos)
             res.send({success:true, data:datos});
         })
         .catch(err=>{
@@ -326,7 +326,7 @@ rendimientos.get('/fetch-excel', async(req,res) => {
 
 
 rendimientos.get('/fetch-pdf', async(req,res) => {
-	console.log(req.query.PDF)
+    console.log(req.query.PDF)
     var pdfName = req.query.PDF+".pdf"
     console.log(pdfName)
     var aux = path.join(__dirname,'../', 'Documents/Rendimientos/', pdfName)
