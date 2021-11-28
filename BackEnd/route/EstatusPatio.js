@@ -16,6 +16,7 @@ var options = {
 var pdfName = ""
 
 const Patio = require('../Models/EstatusPatio.js')
+const Fotos = require('../Models/Fotos.js')
 patio.use(cors())
 
 process.env.SECRET_KEY = 'secret'

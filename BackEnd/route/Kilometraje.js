@@ -222,6 +222,8 @@ kilometraje.post('/KilometrajePDF', (req,res) => {
                                         const imgTest = {                            
                                             Foto1: new Buffer( fotos.Foto, 'binary' ).toString('ascii'),                            
                                         }
+
+console.log(imgTest.Foto1.substr(0,12));
                             var document = {
                                 html: html,
                                 data: {

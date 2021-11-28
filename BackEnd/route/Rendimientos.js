@@ -254,7 +254,7 @@ rendimientos.post('/RendimientosPDF', (req,res) => {
                     html: html,
                     data: {
                         users: users,
-                        eader: imgTest
+                        header: imgTest
                     },
                     path:  path.join(__dirname, '../Documents/Rendimientos/Rendimiento-') + req.body.Periodo + ".pdf"
                 }
