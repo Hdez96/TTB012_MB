@@ -9,7 +9,7 @@ const bcrypt = require('bcryptjs')
 var pdf = require('pdf-creator-node')
 var fs = require('fs')
 var options = {
-	format: 'Letter'
+    format: 'Letter'
 }
 
 const Fotos = require('../Models/Fotos.js')
@@ -26,20 +26,20 @@ pruebasdedesempeños.use(cors())
 process.env.SECRET_KEY = 'secret'
 
 pruebasdedesempeños.post('/pruebasdedesempeno',async (req, res) => {
-	const today = new Date().toJSON()
-	
-	const formData = {
-		NumeroEconomico: req.body.NumeroEconomico,
-	        Mes: req.body.Mes,
-       		Año: req.body.Año,
-		Ruta: req.body.Ruta,
-		Fecha: req.body.Fecha,
-		NombredeEncargado: req.body.NombredeEncargado,
-		NombredeRevision: req.body.NombredeRevision,
-		NombreVistoBueno: req.body.NombreVistoBueno,
+    const today = new Date().toJSON()
+    
+    const formData = {
+        NumeroEconomico: req.body.NumeroEconomico,
+            Mes: req.body.Mes,
+            Año: req.body.Año,
+        Ruta: req.body.Ruta,
+        Fecha: req.body.Fecha,
+        NombredeEncargado: req.body.NombredeEncargado,
+        NombredeRevision: req.body.NombredeRevision,
+        NombreVistoBueno: req.body.NombreVistoBueno,
         NombredeEmpresaOperadora: req.body.NombredeEmpresaOperadora
-	}
-	Pruebasdedesempeños.findOne({
+    }
+    Pruebasdedesempeños.findOne({
         where: { 
           NumeroEconomico: req.body.NumeroEconomico
         }
@@ -50,7 +50,7 @@ pruebasdedesempeños.post('/pruebasdedesempeno',async (req, res) => {
             Pruebasdedesempeños.create(formData)
             .then(pruebasdedesempeños => {
                 console.log("Registrado.")
-				res.send({ status: 'Registrado!' })
+                res.send({ status: 'Registrado!' })
             })
             .catch(err => {
                 console.log(err)
@@ -61,8 +61,8 @@ pruebasdedesempeños.post('/pruebasdedesempeno',async (req, res) => {
         }
     })
     .catch(err => {
-		console.log(err)
-		res.send('error: ' + err)
+        console.log(err)
+        res.send('error: ' + err)
     })
 })
 
@@ -75,8 +75,8 @@ pruebasdedesempeños.post('/PruebasPDF', (req,res) => {
     let d = fec.getDate()
     console.log("FECHA:"+ fec +"AÑO: "+ y + " MES: " + m + " Dia: " +d)
     let stra = req.body.NumeroEconomico.substr(16,req.body.NumeroEconomico.length)
-	req.body.NumeroEconomico = stra
-	console.log(req.body.NumeroEconomico)
+    req.body.NumeroEconomico = stra
+    console.log(req.body.NumeroEconomico)
     Pruebasdedesempeños.findOne({
         where: {
             NumeroEconomico: req.body.NumeroEconomico,
@@ -100,7 +100,7 @@ pruebasdedesempeños.post('/PruebasPDF', (req,res) => {
                 }
             })
             .then(obj3 =>{
-		 EstadoLI.findAll({
+         EstadoLI.findAll({
                     where: {
                         NumeroEconomico: req.body.NumeroEconomico,
                         Mes: m,
@@ -108,7 +108,7 @@ pruebasdedesempeños.post('/PruebasPDF', (req,res) => {
                     }
                 })
                 .then(obj4 =>{
-		 DatosF.findOne({
+         DatosF.findOne({
                         where: {
                             NumeroEconomico: req.body.NumeroEconomico,
                             Mes: m,
@@ -141,11 +141,11 @@ pruebasdedesempeños.post('/PruebasPDF', (req,res) => {
                                     //Aqui va el codigo del PDF
                                     var html = fs.readFileSync(path.join(__dirname, '../Documents/Templates/PruebasDesempeño.html'),'utf-8');
                                     var options = {
-                                        	    phantomPath: path.resolve(
+                                                phantomPath: path.resolve(
                                                     process.cwd(),
                                                     "node_modules/phantomjs/bin/phantomjs"
                                                   ),
-    				                            format: "A3",
+                                                format: "A3",
                                                 orientation: "landscape",
                                                 border: "0mm",
                                                 header: {
@@ -175,15 +175,15 @@ pruebasdedesempeños.post('/PruebasPDF', (req,res) => {
                                         }
                                         DataLI.push(objeto)
                                     }
-    				                DataLI.sort(function (a,b) {
-                        				if(a.NumerodeLlanta > b.NumerodeLlanta){
-            		                	    return 1;
-                        				}
-            		                	if(a.NumerodeLlanta < b.NumerodeLlanta){
-            		                	    return -1
-                    		        	}
-            			        	    return 0
-                    				})	
+                                    DataLI.sort(function (a,b) {
+                                        if(a.NumerodeLlanta > b.NumerodeLlanta){
+                                            return 1;
+                                        }
+                                        if(a.NumerodeLlanta < b.NumerodeLlanta){
+                                            return -1
+                                        }
+                                        return 0
+                                    })  
                                     let DataLF = []
                                     for(let valor in obj6)
                                     {
@@ -198,7 +198,7 @@ pruebasdedesempeños.post('/PruebasPDF', (req,res) => {
                                         }
                                         DataLF.push(objeto)
                                     }
-    				                DataLF.sort(function (a,b) {
+                                    DataLF.sort(function (a,b) {
                                             if(a.NumerodeLlanta > b.NumerodeLlanta){
                                                 return 1;
                                             }
@@ -219,7 +219,7 @@ pruebasdedesempeños.post('/PruebasPDF', (req,res) => {
                                         }
                                         DataFa.push(objeto)
                                     }
-    				//console.log("ADIOS"+obj1.NumeroEconomico)
+                    //console.log("ADIOS"+obj1.NumeroEconomico)
                                     let datas = obj1.dataValues
                                     let DataP1 = {
                                         NumeroEconomico: obj1.NumeroEconomico,
@@ -234,22 +234,25 @@ pruebasdedesempeños.post('/PruebasPDF', (req,res) => {
 
                                     }
                                     let DataP = [DataP1]
-                    //				console.log(obj2.dataValues)
+                    //              console.log(obj2.dataValues)
                                                     datas = obj2.dataValues
-                    				console.log(obj2)
+                                    console.log(obj2)
                                     let DataE1 = datas
                                     let DataE = [DataE1]
-                    				datas = obj3.dataValues
-                    				console.log(datas)
+                                    datas = obj3.dataValues
+                                    console.log(datas)
                                     let DataI1 = datas
-                    				let DataI = [DataI1]
-                    				console.log("V: "+DataI[0].Hora)
+                                    let DataI = [DataI1]
+                                    console.log("V: "+DataI[0].Hora)
                                     datas = obj5.dataValues
                                     let DataF1 = datas
-    				                let DataF = [DataF1]
+                                    let DataF = [DataF1]
                                     console.log(DataF)
-                    				console.log("V2: " + DataF[0].Hora)
-                    				let NFallas = DataFa.length+1
+                                    console.log("V2: " + DataF[0].Hora)
+                                    let NFallas = DataFa.length+1
+                                    const imgTest = {                            
+                                        Foto1: new Buffer( fotos.Foto, 'binary' ).toString('ascii'),                            
+                                    }
                                     var document = {
                                         html: html,
                                         data: {
@@ -259,11 +262,12 @@ pruebasdedesempeños.post('/PruebasPDF', (req,res) => {
                                             LlantaInicial: DataLI,
                                             DatosFinal: DataF,
                                             LlantaFinal: DataLF,
-    					                    NumeroFallas: NFallas,
+                                            NumeroFallas: NFallas,
                                             Fallas: DataFa,
                                             Dia: d,
                                             Mes: m,
-                                            Año: y
+                                            Año: y,
+                                            Header: imgTest
                                         },
                                         path: path.join(__dirname, '../Documents/PruebasDesempeño/PruebasDesempeño') + req.body.NumeroEconomico + ".pdf"
                                     }
@@ -273,7 +277,7 @@ pruebasdedesempeños.post('/PruebasPDF', (req,res) => {
                                     .then(res => {
                                         //res.send(Promise.reject());
                                         console.log("Creado.")
-    				                    console.log(NFallas)
+                                        console.log(NFallas)
                                     })
                                     .catch(error => {
                                         //res.send(Promise.resolve());
@@ -454,9 +458,9 @@ pruebasdedesempeños.post('/PruebasPDF', (req,res) => {
                                     console.log("tengo "+DataFa.length)
                                     for(j in DataFa)
                                     {
-					console.log(DataFa[j].Falla)
-					worksheet.mergeCells('F'+(41+((j-0)+1))+':G'+(41+((j-0)+1)));
-	                                  worksheet.mergeCells('H'+(41+((j-0)+1))+':N'+(41+((j-0)+1)));
+                    console.log(DataFa[j].Falla)
+                    worksheet.mergeCells('F'+(41+((j-0)+1))+':G'+(41+((j-0)+1)));
+                                      worksheet.mergeCells('H'+(41+((j-0)+1))+':N'+(41+((j-0)+1)));
                                       worksheet.getCell('G'+(41+((j-0)+1))).value = (j-0)+1;
                                       worksheet.getCell('N'+(41+((j-0)+1))).value = DataFa[j].Falla;
                                     }
@@ -615,12 +619,12 @@ pruebasdedesempeños.post('/PruebasPDF', (req,res) => {
                                 })
                             })  
                             .catch(err7 =>{
-				                console.log(err7)
+                                console.log(err7)
                                 res.send({success:false, message:err7});
                             })
                         })  
                         .catch(err6 =>{
-				            console.log(err6)
+                            console.log(err6)
                             res.send({success:false, message:err6});
                         })
                     })  
@@ -657,7 +661,7 @@ pruebasdedesempeños.post('/getData', (req,res) => {
         for(let valor in obj){            
                 let data = {
                     NombrePDF: "PruebasDesempeño"+obj[valor].NumeroEconomico,
-		            Fecha: obj[valor].Fecha,
+                    Fecha: obj[valor].Fecha,
                     Ruta: "/pruebasdesempeno/fetch-pdf",
                     RutaExcel: "/pruebasdesempeno/fetch-excel"    
                 }              
