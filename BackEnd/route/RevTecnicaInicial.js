@@ -232,10 +232,14 @@ revtecini.post('/revtecPDF',async (req, res) => {
                         }
                     };
         console.log("Generando pdf...\n")
+        const imgTest = {                            
+            Foto1: new Buffer( fotos.Foto, 'binary' ).toString('ascii'),                            
+        }
         var document = {
             html: html,
             data: {
-                users: user
+                users: user,
+                Header: imgTest
             },
     //        timeout: 10000,
             path:  path.join(__dirname, '../Documents/Cedularti/') + req.body.Carroceria + ".pdf"

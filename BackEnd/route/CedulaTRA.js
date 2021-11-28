@@ -112,10 +112,14 @@ cedulatra.post('/cedulatra',async (req, res) => {
                         }
                     ]
     		        console.log(cedulatrad)
+                    const imgTest = {                            
+                        Foto1: new Buffer( fotos.Foto, 'binary' ).toString('ascii'),                            
+                    }
                     var document = {
                         html: html,
                         data: {
-                            users: cedulatrad
+                            users: cedulatrad,
+                            Header: imgTest
                             //users: cedulatra
                         },
                         path:  path.join(__dirname, '../Documents/Cedulatra/') + req.body.NumeroFactura + ".pdf"

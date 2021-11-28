@@ -71,89 +71,104 @@ consumoE.post('/ConsumoEPDF', (req,res) => {
             }
         })
         .then(objm =>{
-	//console.log(obj)
-            var html = fs.readFileSync(path.join(__dirname, '../Documents/Templates/Consumo_y_Mantenimiento_de_Empresas.html'),'utf-8');
-            var options = {
-                	phantomPath: path.resolve(
-    process.cwd(),
-    "node_modules/phantomjs/bin/phantomjs"
-  ),
-		        format: "A3",
-                        orientation: "portrait",
-                        border: "0mm",
-                        header: {
-                            height: "0mm",
-                            contents: '<div style="text-align: center;"></div>'
-                        },
-                        "footer": {
-                            "height": "0mm",
-                            "contents": {
-                                first: ' ',
-                                default: '<span style="color: #444;">{{page}}</span>/<span>{{pages}}</span>', // fallback value
-                                last: ' '
+            Fotos.findOne({
+                where: { 
+                    NumeroEconomico: "0000",
+                }
+                })
+                .then(async(fotos) => {
+                //console.log(obj)
+                var html = fs.readFileSync(path.join(__dirname, '../Documents/Templates/Consumo_y_Mantenimiento_de_Empresas.html'),'utf-8');
+                var options = {
+                        phantomPath: path.resolve(
+                        process.cwd(),
+                        "node_modules/phantomjs/bin/phantomjs"
+                    ),
+                    format: "A3",
+                            orientation: "portrait",
+                            border: "0mm",
+                            header: {
+                                height: "0mm",
+                                contents: '<div style="text-align: center;"></div>'
+                            },
+                            "footer": {
+                                "height": "0mm",
+                                "contents": {
+                                    first: ' ',
+                                    default: '<span style="color: #444;">{{page}}</span>/<span>{{pages}}</span>', // fallback value
+                                    last: ' '
+                                }
                             }
-                        }
-                    };
-            var users = [] 
-            var user = []      
-//            let EO = objm[0].EmpresaOperadora
-	//console.log(objm.dataValues)
-	  let EO = "ECO"
-          for(const valor in objm){
-                let cont = parseInt(valor) + parseInt(1)
-                var objeto = {
-//                    EmpresaOperadora: objm[valor].EmpresaOperadora,
-                    NumeroEconomico: objm[valor].NumeroEconomico,
-                    Numero: cont,
-                    Fecha: objm[valor].Dia + "-" + objm[valor].Mes + "-" + objm[valor].Año,
-                    TipoMantenimiento: objm[valor].TipoMantenimiento,
-                    LecturaOdometroAnterior: objm[valor].LecturaOdometroAnterior,
-                    LecturaOdometro: objm[valor].LecturaOdometro,
-                    Observaciones: objm[valor].Observaciones
+                        };
+                var users = [] 
+                var user = []      
+    //            let EO = objm[0].EmpresaOperadora
+                //console.log(objm.dataValues)
+                let EO = "ECO"
+                for(const valor in objm){
+                    let cont = parseInt(valor) + parseInt(1)
+                    var objeto = {
+    //                  EmpresaOperadora: objm[valor].EmpresaOperadora,
+                        NumeroEconomico: objm[valor].NumeroEconomico,
+                        Numero: cont,
+                        Fecha: objm[valor].Dia + "-" + objm[valor].Mes + "-" + objm[valor].Año,
+                        TipoMantenimiento: objm[valor].TipoMantenimiento,
+                        LecturaOdometroAnterior: objm[valor].LecturaOdometroAnterior,
+                        LecturaOdometro: objm[valor].LecturaOdometro,
+                        Observaciones: objm[valor].Observaciones
+                    }
+                    user.push(objeto)
                 }
-                user.push(objeto)
-            }
 
-            for(const valor in obj){
-                var objeto = {
-                    NumeroEconomico: obj[valor].NumeroEconomico,
-                    Mes: obj[valor].Mes,
-                    KilometrajePorMes: obj[valor].KilometrajePorMes,
-                    RendimientoDiesel: obj[valor].RendimientoDiesel,
-                    RendimientoAdblue: obj[valor].RendimientoAdblue,
-                    ConsumoMensualDiesel: obj[valor].ConsumoMensualDiesel,
-                    ConsumoMensualAdblue: obj[valor].ConsumoMensualAdblue
+                for(const valor in obj){
+                    var objeto = {
+                        NumeroEconomico: obj[valor].NumeroEconomico,
+                        Mes: obj[valor].Mes,
+                        KilometrajePorMes: obj[valor].KilometrajePorMes,
+                        RendimientoDiesel: obj[valor].RendimientoDiesel,
+                        RendimientoAdblue: obj[valor].RendimientoAdblue,
+                        ConsumoMensualDiesel: obj[valor].ConsumoMensualDiesel,
+                        ConsumoMensualAdblue: obj[valor].ConsumoMensualAdblue
+                    }
+                    users.push(objeto)
                 }
-                users.push(objeto)
+            //console.log("HOLA")
+            //console.log(objm + ' '+ obj)
+            const imgTest = {                            
+                Foto1: new Buffer( fotos.Foto, 'binary' ).toString('ascii'),                            
             }
-		//console.log("HOLA")
-		//console.log(objm + ' '+ obj)
-            var document = {
-                html: html,
-                data: {
-                    users: users,
-                    user:user,
-                    Mes: req.body.Mes,
-                    Año: req.body.Año,
-                    EmpresaOperadora: EO
-                },
-                path:  path.join(__dirname, '../Documents/ConsumoMantenimiento/Consumo-y-Mantenimiento-Empresas') + req.body.Mes + ".pdf"
-            }
-            pdfName = "Consumo"+ req.body.Mes+".pdf"
-            pdf.create(document,options)
-            .then(res => {
-                //res.send(Promise.reject());
-                console.log("Creado.")
+                var document = {
+                    html: html,
+                    data: {
+                        users: users,
+                        user:user,
+                        Mes: req.body.Mes,
+                        Año: req.body.Año,
+                        EmpresaOperadora: EO,
+                        Header: imgTest
+                    },
+                    path:  path.join(__dirname, '../Documents/ConsumoMantenimiento/Consumo-y-Mantenimiento-Empresas') + req.body.Mes + ".pdf"
+                }
+                pdfName = "Consumo"+ req.body.Mes+".pdf"
+                pdf.create(document,options)
+                .then(res => {
+                    //res.send(Promise.reject());
+                    console.log("Creado.")
+                })
+                .catch(error => {
+                    //res.send(Promise.resolve());
+                    console.log(error)
+                })
+                res.send({success:true, data:obj,data1:objm});
             })
-            .catch(error => {
-                //res.send(Promise.resolve());
-                console.log(error)
+            .catch(err1 =>{
+            console.log(err1)
+                res.send({success:false, message:err1});
             })
-            res.send({success:true, data:obj,data1:objm});
         })
-        .catch(err1 =>{
-		console.log(err1)
-            res.send({success:false, message:err1});
+        .catch(err2 =>{
+            console.log(err2)
+            res.send({success:false, message:err2})
         })
     })
     .catch(err =>{
