@@ -59,14 +59,7 @@ patio.post('/patio',async (req, res) => {
 })
 
 patio.post('/patioPDF', (req,res) => {
-    /*var dia = req.body.Fechadeliberacion.substring(0,req.body.Fechadeliberacion.indexOf('/'))
-    var date = req.body.Fechadeliberacion.substring(req.body.Fechadeliberacion.indexOf('/')+1,req.body.Fechadeliberacion.length)
-    var mes = date.substring(0,date.indexOf('/'))
-    date = date.substring(date.indexOf('/')+1,date.length)
-    var año = date
-
-    req.body.Fechadeliberacion = año + '-' + mes + '-' + dia
-    */
+	
     console.log(req.body.Fechadeliberacion)
     console.log(req.body.FechaFin)
 
@@ -81,128 +74,129 @@ patio.post('/patioPDF', (req,res) => {
         console.log(req.body.Fechadeliberacion)
         console.log(req.body.FechaFin+1)
         Patio.findAll({
-                where:{
-                    Fechadeingreso: {
-                            [Op.between]: [req.body.Fechadeliberacion, req.body.FechaFin]
-                }
-                //[Op.between]: [req.body.Fechadeliberacion, req.body.FechaFin]
-                //Fechadeingreso: req.body.Fechadeliberacion
-                //Fechadeingreso: "2021-05-23"
+            where:{
+                Fechadeingreso: {
+                        [Op.between]: [req.body.Fechadeliberacion, req.body.FechaFin]
+            }
+            //[Op.between]: [req.body.Fechadeliberacion, req.body.FechaFin]
+            //Fechadeingreso: req.body.Fechadeliberacion
+            //Fechadeingreso: "2021-05-23"
+            }
+        })
+        .then(obj=>{
+            Fotos.findOne({
+                where: { 
+                    NumeroEconomico: "0000",
                 }
             })
-            .then(obj=>{
-                Fotos.findOne({
-                    where: { 
-                        NumeroEconomico: "0000",
+            .then(async(fotos) => {
+                let fechap = obj[0].Fechadeingreso
+                let arr = []
+                let arraux = []
+                let mesesArray = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
+            
+                obj.sort(function (a, b) {
+                    if (a.Fechadeingreso > b.Fechadeingreso) {
+                        return 1;
                     }
-                    })
-                    .then(async(fotos) => {
-                    let fechap = obj[0].Fechadeingreso
-                    let arr = []
-                    let arraux = []
-                    let mesesArray = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
-                
-                    obj.sort(function (a, b) {
-                                if (a.Fechadeingreso > b.Fechadeingreso) {
-                                    return 1;
-                                }
-                                if (a.Fechadeingreso < b.Fechadeingreso) {
-                                    return -1;
-                                }
-                                // a must be equal to b
-                                return 0;
-                                });
-                    for(let i in obj)
+                    if (a.Fechadeingreso < b.Fechadeingreso) {
+                        return -1;
+                    }
+                    // a must be equal to b
+                    return 0;
+                });
+                for(let i in obj)
+                {
+                    //console.log(obj[i].NumeroEconomico + ':'+obj[i].Fechadeingreso)
+                    if(obj[i].Fechadeingreso == fechap)
                     {
-                        //console.log(obj[i].NumeroEconomico + ':'+obj[i].Fechadeingreso)
-                        if(obj[i].Fechadeingreso == fechap)
-                        {
-                            console.log("1 "+obj[i].NumeroEconomico)
-                            var objeto = {
-                                    NumeroEconomico: obj[i].NumeroEconomico,
-                                    Estatus: obj[i].Estatus,
-                                    Sistema: obj[i].Sistema,
-                                    Descripciondefalla: obj[i].Descripciondefalla,
-                                    Kilometraje: obj[i].Kilometraje,
-                                    Fechadeingreso: obj[i].Fechadeingreso,
-                                    Fechadeliberacion: obj[i].Fechadeliberacion
-                            }
+                        console.log("1 "+obj[i].NumeroEconomico)
+                        var objeto = {
+                                NumeroEconomico: obj[i].NumeroEconomico,
+                                Estatus: obj[i].Estatus,
+                                Sistema: obj[i].Sistema,
+                                Descripciondefalla: obj[i].Descripciondefalla,
+                                Kilometraje: obj[i].Kilometraje,
+                                Fechadeingreso: obj[i].Fechadeingreso,
+                                Fechadeliberacion: obj[i].Fechadeliberacion
+                        }
                         //console.log(obj[i].NumeroEconomico)
                         arraux.push(objeto)
-                        }
-                        else{
-                            console.log("cambio fecha")
-                            console.log("2 "+obj[i].NumeroEconomico)
-                            var objeto = {
-                                                NumeroEconomico: obj[i].NumeroEconomico,
-                                                Estatus: obj[i].Estatus,
-                                                Sistema: obj[i].Sistema,
-                                                Descripciondefalla: obj[i].Descripciondefalla,
-                                                Kilometraje: obj[i].Kilometraje,
-                                                Fechadeingreso: obj[i].Fechadeingreso,
-                                                Fechadeliberacion: obj[i].Fechadeliberacion
-                                        }
-                            //arraux.push(objeto)
-                            let fe = new Date(fechap)
-                            let año = fe.getFullYear()
-                            let mes = mesesArray[parseInt(fe.getMonth())]
-                            let dia = fe.getDate()
-                            let fechas = dia + " de " + mes + " del " + año
-                            let obja = {
-                                    Fecha: fechas,
-                                Registros: arraux
-                            }
-                            arr.push(obja)
-                            fechap = obj[i].Fechadeingreso
-                            arraux = []
-                            arraux.push(objeto)
-                        }
                     }
-                    console.log("Final final "+ arraux[0].NumeroEconomico)
-                        let fe = new Date(fechap)
-                                    let año = fe.getFullYear()
-                                    let mes = mesesArray[parseInt(fe.getMonth())]
-                                    let dia = fe.getDate()
-                                    let fechas = dia + " de " + mes + " del " + año
-                    let obja = {
-                                    Fecha: fechas,
-                        Registros: arraux
-                            }
-                        arr.push(obja)
-                    
-                    for(let a in arr)
+                    else
                     {
-                        console.log(arr[a].Fecha)
-                        let i = arr[a].Registros
-                        console.log("Tam "+i.length)
-                        for(let x in i)
-                            console.log(i[x].NumeroEconomico)
-                    }
-                    var html = fs.readFileSync( path.join(__dirname, '../Documents/Templates/EstatusPatio.html'),'utf-8');
-                    var options = {
-                                phantomPath: path.resolve(
-                        process.cwd(),
-                            "node_modules/phantomjs/bin/phantomjs"
-                    ),
-                                format: "A3",
-                                orientation: "portrait",
-                                border: "0mm",
-                                header: {
-                                    height: "0mm",
-                                    contents: '<div style="text-align: center;"></div>'
-                                },
-                                "footer": {
-                                    "height": "0mm",
-                                    "contents": {
-                                            first: ' ',
-                                            default: '<span style="color: #444;">{{page}}</span>/<span>{{pages}}</span>', // fallback value
-                                            last: ' '
-                                    }
-                                }
-                        };
-                        const imgTest = {                            
-                            Foto1: new Buffer( fotos.Foto, 'binary' ).toString('ascii'),                            
+                        console.log("cambio fecha")
+                        console.log("2 "+obj[i].NumeroEconomico)
+                        var objeto = {
+                                NumeroEconomico: obj[i].NumeroEconomico,
+                                Estatus: obj[i].Estatus,
+                                Sistema: obj[i].Sistema,
+                                Descripciondefalla: obj[i].Descripciondefalla,
+                                Kilometraje: obj[i].Kilometraje,
+                                Fechadeingreso: obj[i].Fechadeingreso,
+                                Fechadeliberacion: obj[i].Fechadeliberacion
                         }
+                        //arraux.push(objeto)
+                        let fe = new Date(fechap)
+                        let año = fe.getFullYear()
+                        let mes = mesesArray[parseInt(fe.getMonth())]
+                        let dia = fe.getDate()
+                        let fechas = dia + " de " + mes + " del " + año
+                        let obja = {
+                            Fecha: fechas,
+                            Registros: arraux
+                        }
+                        arr.push(obja)
+                        fechap = obj[i].Fechadeingreso
+                        arraux = []
+                        arraux.push(objeto)
+                    }
+                }
+                console.log("Final final "+ arraux[0].NumeroEconomico)
+                let fe = new Date(fechap)
+                let año = fe.getFullYear()
+                let mes = mesesArray[parseInt(fe.getMonth())]
+                let dia = fe.getDate()
+                let fechas = dia + " de " + mes + " del " + año
+                let obja = {
+                    Fecha: fechas,
+                    Registros: arraux
+                }
+                arr.push(obja)
+                
+                for(let a in arr)
+                {
+                    console.log(arr[a].Fecha)
+                    let i = arr[a].Registros
+                    console.log("Tam "+i.length)
+                    for(let x in i)
+                        console.log(i[x].NumeroEconomico)
+                }
+                var html = fs.readFileSync( path.join(__dirname, '../Documents/Templates/EstatusPatio.html'),'utf-8');
+                var options = {
+                    phantomPath: path.resolve(
+                        process.cwd(),
+                        "node_modules/phantomjs/bin/phantomjs"
+                    ),
+                        format: "A3",
+                        orientation: "portrait",
+                        border: "0mm",
+                        header: {
+                            height: "0mm",
+                            contents: '<div style="text-align: center;"></div>'
+                        },
+                        "footer": {
+                            "height": "0mm",
+                            "contents": {
+                                    first: ' ',
+                                    default: '<span style="color: #444;">{{page}}</span>/<span>{{pages}}</span>', // fallback value
+                                    last: ' '
+                            }
+                        }
+                    };
+                    const imgTest = {                            
+                        Foto1: new Buffer( fotos.Foto, 'binary' ).toString('ascii'),                            
+                    }
                     var document = {
                             html: html,
                             data: {
@@ -222,41 +216,35 @@ patio.post('/patioPDF', (req,res) => {
                         //res.send(Promise.resolve());
                         console.log(error)
                     })
-
-                    /*for(let i in arr)
-                    {
-                        console.log(arr[i].Fecha)
-                        for(let j in arr[i].datos)
-                            console.log(arr[i].datos[j])
-                    }*/
-                    res.send({success:true,data:obj.arr}) 
-                })
-                .catch(err=>{
-                        console.log(err)
-                        res.send({success:false, message:err});
-                    })
-                    .catch(err=>{
-                        res.send({success:false, message:err});
-                    })
-                })
+                res.send({success:true,data:obj.arr}) 
+            })
+            .catch(err=>{
+                console.log(err)
+                res.send({success:false, message:err});
+            })
+        })
+        .catch(err=>{
+            res.send({success:false, message:err});
+        })
+        
         }
         else{
             if(req.body.FechaFin && !req.body.Fechadeliberacion)
                 req.body.Fechadeliberacion = req.body.FechaFin
 
             Patio.findAll({
-                    where: {
-                        Fechadeingreso: req.body.Fechadeliberacion
-                        //Fechadeingreso: "2021-05-23"
+                where: {
+                    Fechadeingreso: req.body.Fechadeliberacion
+                    //Fechadeingreso: "2021-05-23"
+                }
+            })
+            .then(obj=>{
+                Fotos.findOne({
+                    where: { 
+                        NumeroEconomico: "0000",
                     }
                 })
-                .then(obj=>{
-                    Fotos.findOne({
-                        where: { 
-                            NumeroEconomico: "0000",
-                        }
-                        })
-                        .then(async(fotos) => {
+                .then(async(fotos) => {
                     var html = fs.readFileSync( path.join(__dirname, '../Documents/Templates/EstatusPatio.html'),'utf-8');
                     var options = {
                         phantomPath: path.resolve(
@@ -280,9 +268,9 @@ patio.post('/patioPDF', (req,res) => {
                         }
                     };
                     var patios=[]       
-                
-                        
-                    for(const valor in obj){
+                    
+                    for(const valor in obj)
+                    {
                         var objeto = {
                             NumeroEconomico: obj[valor].NumeroEconomico,
                             Estatus: obj[valor].Estatus,
@@ -290,7 +278,7 @@ patio.post('/patioPDF', (req,res) => {
                             Descripciondefalla: obj[valor].Descripciondefalla,
                             Kilometraje: obj[valor].Kilometraje,
                             Fechadeingreso: obj[valor].Fechadeingreso,
-                    Fechadeliberacion: obj[valor].Fechadeliberacion
+                            Fechadeliberacion: obj[valor].Fechadeliberacion
                         }
                         patios.push(objeto)
                     }
@@ -310,37 +298,36 @@ patio.post('/patioPDF', (req,res) => {
                         Foto1: new Buffer( fotos.Foto, 'binary' ).toString('ascii'),                            
                     }
                     objeto1.push(objeto2)
-                        var document = {
-                            html: html,
-                            data: {
-                                datos: objeto1,
-                                Header: imgTest
-                            },
-                            path:  path.join(__dirname, '../Documents/EstatusPatio/EstatusPatio') + req.body.Fechadeliberacion + ".pdf"
-                        }
-                        pdfName = "EstatusPatio"+ req.body.Fechadeliberacion +".pdf"
-                    console.log("HOLA: " +pdfName)
-                        pdf.create(document,options)
-                        .then(res => {
-                            //res.send(Promise.reject());
-                            console.log("Creado.")
-                        })
-                        .catch(error => {
-                            //res.send(Promise.resolve());
-                            console.log(error)
-                        })
-                        console.log(obj)
-                        res.send({success:true, data:obj});
+                    var document = {
+                        html: html,
+                        data: {
+                            datos: objeto1,
+                            Header: imgTest
+                        },
+                        path:  path.join(__dirname, '../Documents/EstatusPatio/EstatusPatio') + req.body.Fechadeliberacion + ".pdf"
+                    }
+                    pdfName = "EstatusPatio"+ req.body.Fechadeliberacion +".pdf"
+                    //console.log("HOLA: " +pdfName)
+                    pdf.create(document,options)
+                    .then(res => {
+                        //res.send(Promise.reject());
+                        console.log("Creado.")
                     })
+                    .catch(error => {
+                        //res.send(Promise.resolve());
+                        console.log(error)
+                    })
+                    console.log(obj)
+                    res.send({success:true, data:obj});
+                })
                 .catch(err=>{
                     console.log(err)
                     res.send({success:false, message:err});
                 })  
-                .catch(err=>{
-                    res.send({success:false, message: err});
-                })
             })
-                      
+            .catch(err=>{
+                res.send({success:false, message: err});
+            })    
     }
         
 })
@@ -685,4 +672,3 @@ patio.post('/UpdateLiberacion', (req,res) =>
 })
 
 module.exports = patio
-
